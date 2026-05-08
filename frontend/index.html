@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StratAI — Social Media Intelligence</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <div class="brand">
+        <span class="brand-logo">⚡</span>
+        <div>
+          <span class="brand-name">StratAI</span>
+          <span class="brand-subtitle">Social Media Intelligence</span>
+        </div>
+      </div>
+      <div class="header-actions">
+        <div class="status-badge" id="statusBadge">
+          <span class="status-dot" id="statusDot"></span>
+          <span id="statusText">Connecting…</span>
+        </div>
+        <button class="btn btn-primary" id="refreshBtn" onclick="triggerRefresh()">
+          <span id="refreshIcon">↻</span> Refresh
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main">
+    <section class="hero">
+      <h1 class="hero-title">Trending Topics in AI &amp; Data Strategy</h1>
+      <p class="hero-sub">
+        Powered by Instagram Graph API · Analyzed by Claude Opus 4.7 · Updated every 6 hours
+      </p>
+      <div class="meta-bar" id="metaBar">
+        <span id="lastUpdated">Loading…</span>
+        <span class="sep">·</span>
+        <span id="categoriesCount">—</span>
+      </div>
+    </section>
+
+    <div class="filter-bar">
+      <button class="filter-btn active" data-filter="all" onclick="filterCategory('all', this)">All Topics</button>
+      <button class="filter-btn" data-filter="AI Strategy" onclick="filterCategory('AI Strategy', this)">AI Strategy</button>
+      <button class="filter-btn" data-filter="AI Automation (No Code)" onclick="filterCategory('AI Automation (No Code)', this)">AI Automation</button>
+      <button class="filter-btn" data-filter="Agentic AI" onclick="filterCategory('Agentic AI', this)">Agentic AI</button>
+      <button class="filter-btn" data-filter="AI Agents" onclick="filterCategory('AI Agents', this)">AI Agents</button>
+      <button class="filter-btn" data-filter="Data Governance" onclick="filterCategory('Data Governance', this)">Data Governance</button>
+      <button class="filter-btn" data-filter="Data Strategy" onclick="filterCategory('Data Strategy', this)">Data Strategy</button>
+    </div>
+
+    <div id="loadingState" class="loading-state">
+      <div class="spinner"></div>
+      <p>Fetching and analyzing Instagram trends…</p>
+    </div>
+
+    <div id="emptyState" class="empty-state" style="display:none">
+      <div class="empty-icon">📊</div>
+      <h3>No Trends Available Yet</h3>
+      <p>Click <strong>Refresh</strong> to start fetching and analyzing Instagram posts.</p>
+      <p class="empty-note">Make sure your Instagram Graph API and Anthropic API credentials are configured in <code>.env</code></p>
+    </div>
+
+    <div id="errorState" class="error-state" style="display:none">
+      <div class="error-icon">⚠️</div>
+      <h3 id="errorTitle">Error</h3>
+      <p id="errorMessage"></p>
+    </div>
+
+    <div id="trendsGrid" class="trends-grid" style="display:none"></div>
+  </main>
+
+  <footer class="footer">
+    <p>StratAI Social Media Manager · Instagram trends analyzed by <strong>Claude Opus 4.7</strong></p>
+  </footer>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
